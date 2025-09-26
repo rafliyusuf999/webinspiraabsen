@@ -1,0 +1,163 @@
+# InspiraNet Cakrawala - Sistem Absensi Digital Lengkap untuk Replit
+
+## Deskripsi Project
+
+Buat sistem absensi digital bernama "InspiraNet Cakrawala" yang canggih dan modern. Ini adalah aplikasi web lengkap untuk manajemen kehadiran siswa dengan fitur real-time, desain glassmorphism yang menarik, dan dashboard admin yang komprehensif.
+
+## Fitur Utama Yang Harus Ada
+
+### Form Absensi Siswa
+- Form input dengan 8 field: nama lengkap, kelas, nomor telepon, username Instagram, asal sekolah, kota, provinsi, dan pilihan cabang
+- 4 pilihan cabang: InspiraNet_Cakrawala_1, InspiraNet_Cakrawala_2, InspiraNet_Cakrawala_3, InspiraNet_Cakrawala_4
+- Validasi real-time yang mencegah duplikasi data
+- Sistem pencegahan duplikat: nomor telepon dan Instagram tidak boleh sama secara global, nama + sekolah tidak boleh sama di hari yang sama
+- Tampilan sukses dengan detail data yang tersimpan
+- Support offline dengan queue system
+
+### Dashboard Admin Lengkap
+- Sistem login admin yang aman (kredensial tersembunyi di kode, tidak tampil di UI)
+- Kartu statistik: total siswa, hari ini, minggu ini, cabang aktif
+- Tabel data absensi dengan fitur pencarian dan filter
+- Fitur edit dan delete per data individual
+- Tombol update data untuk setiap record
+- Tombol delete data untuk setiap record
+- Export data ke CSV dengan filter berdasarkan cabang
+- Opsi export semua data atau per cabang
+- Fungsi clear all data
+- Visualisasi data dengan chart interaktif (grafik per cabang, timeline harian, distribusi siswa)
+
+### Desain & User Experience
+- Desain glassmorphism dengan efek blur dan transparansi
+- Background gradient dengan animasi floating orbs
+- Animasi smooth di semua interaksi (hover, click, transitions)
+- Responsive design yang mobile-friendly
+- Toast notifications untuk feedback user
+- Loading states dengan skeleton screens
+- Micro-interactions yang engaging
+
+### Sistem Real-time
+- Auto-sync data setiap 10 detik
+- Monitor status koneksi
+- Queue management untuk mode offline
+- Live update tanpa perlu refresh halaman
+
+## Struktur Database
+
+### Tabel attendance
+- Semua field form dengan validasi unique untuk phone dan Instagram
+- Constraint unique untuk kombinasi nama + sekolah + tanggal
+- Timestamp otomatis dan tracking IP address
+- Index untuk performa pencarian
+
+### Tabel admin_users  
+- Sistem login admin dengan password terenkripsi
+- Tracking last login dan status aktif
+
+### Tabel activity_logs
+- Log semua aktivitas admin (login, delete, export, dll)
+- Track IP address dan user agent
+
+## API Endpoints Yang Dibutuhkan
+
+### Attendance API
+- GET: ambil daftar absensi dengan pagination
+- GET: ambil statistik dan data hari ini
+- GET: cek duplikasi sebelum submit
+- POST: submit absensi baru dengan validasi
+- PUT: update data absensi individual
+- DELETE: hapus data absensi per ID
+
+### Admin API
+- POST: login admin dengan validasi
+- GET: data statistik dashboard
+- GET: export CSV dengan filter cabang
+- PUT: update individual record
+- DELETE: delete individual record  
+- POST: clear all data
+
+## Spesifikasi Teknis
+
+### Frontend
+- HTML5 dengan semantic markup
+- CSS3 dengan custom properties dan modern features
+- JavaScript ES6+ dengan fetch API
+- Chart.js untuk visualisasi data
+- Local storage untuk offline support
+
+### Backend PHP
+- PHP 8.0+ dengan PDO untuk database
+- Prepared statements untuk keamanan
+- JSON API responses
+- Error handling dan logging
+- Rate limiting
+
+### Database SQLite
+- Optimized untuk Replit environment
+- Foreign key constraints
+- Proper indexing untuk performa
+- Backup dan recovery system
+
+## Validasi & Keamanan
+
+### Input Validation
+- Nama: minimal 2 karakter, hanya huruf dan spasi
+- Telepon: format Indonesia (+62/08) dengan validasi
+- Instagram: 3-30 karakter alphanumeric
+- Semua field required dengan sanitization
+
+### Security Features
+- SQL injection prevention
+- XSS protection dengan output encoding
+- CSRF protection untuk form admin
+- Rate limiting per IP
+- Secure session handling
+
+## Fitur CRUD Admin Detail
+
+### View Data
+- Tabel responsive dengan sorting
+- Search real-time berdasarkan nama, sekolah, kota
+- Filter berdasarkan tanggal, cabang, provinsi
+- Pagination untuk performa
+
+### Update Data
+- Modal popup untuk edit data
+- Form validation sama seperti input awal
+- Real-time duplicate checking saat edit
+- Konfirmasi sebelum save perubahan
+
+### Delete Data  
+- Konfirmasi modal sebelum delete
+- Soft delete dengan restore option
+- Log aktivitas delete di activity_logs
+- Bulk delete dengan checkbox selection
+
+### Export System
+- Export semua data ke CSV
+- Export per cabang dengan filter
+- Export dengan rentang tanggal
+- Format CSV dengan header Indonesia
+- Download langsung tanpa reload
+
+## Desain Visual Specifications
+
+### Color System
+- Setiap cabang punya warna unik
+- Gradient backgrounds yang smooth
+- Consistent color palette
+- Dark mode compatibility
+
+### Animations
+- Page load animations
+- Form interaction feedback
+- Chart drawing animations  
+- Loading states yang engaging
+- Error/success state animations
+
+### Responsive Design
+- Mobile-first approach
+- Touch-friendly buttons
+- Swipe gestures untuk mobile
+- Adaptive layouts untuk semua screen size
+
+Sistem ini harus bisa berjalan sempurna di Replit dengan performa tinggi, keamanan yang baik, dan user experience yang excellent. Semua fitur CRUD admin harus fully functional dengan validasi yang proper dan feedback yang jelas ke user.
